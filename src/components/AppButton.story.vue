@@ -1,19 +1,25 @@
 <script lang="ts" setup>
 import AppButton from "./AppButton.vue";
 import { ref } from "vue";
+import { hstEvent } from "histoire/client";
+
 const label = ref("Hello World");
 </script>
 
 <template>
   <Story title="buttons" :layout="{ type: 'grid' }">
     <Variant title="default">
-      <AppButton>{{ label }}</AppButton>
+      <AppButton @click="hstEvent('click', $event)">{{ label }}</AppButton>
     </Variant>
     <Variant title="secondary">
-      <AppButton color="secondary">{{ label }}</AppButton>
+      <AppButton color="secondary" @click="hstEvent('click', $event)">
+        {{ label }}
+      </AppButton>
     </Variant>
     <Variant title="disabled">
-      <AppButton disabled>{{ label }}</AppButton>
+      <AppButton disabled @click="hstEvent('click', $event)">
+        {{ label }}
+      </AppButton>
     </Variant>
 
     <template #controls>
